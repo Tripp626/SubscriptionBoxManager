@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { BoxProvider } from './context/BoxContext';
 import Navbar from './components/Navbar';
@@ -17,7 +17,9 @@ import Preferences from './pages/Preferences';
 import Profile from './pages/Profile';
 import MyReviews from './pages/MyReviews';
 import TrackShipment from './pages/TrackShipment';
+import ForgotPassword from './pages/ForgotPassword';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function ProtectedRoute({ children, roles }) {
   const { user } = useAuth();
@@ -27,9 +29,13 @@ function ProtectedRoute({ children, roles }) {
 }
 
 function AppRoutes() {
+  const location = useLocation();
+  const hideNavbarRoutes = ['/login', '/register', '/forgot-password'];
+  const showNavbar = !hideNavbarRoutes.includes(location.pathname);
+
   return (
     <>
-      <Navbar />
+      {showNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
@@ -46,6 +52,7 @@ function AppRoutes() {
         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="/feedback" element={<ProtectedRoute roles={['customer']}><MyReviews /></ProtectedRoute>} />
         <Route path="/track/:orderId" element={<ProtectedRoute roles={['customer']}><TrackShipment /></ProtectedRoute>} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </>
   );

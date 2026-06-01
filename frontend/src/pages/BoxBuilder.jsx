@@ -52,10 +52,10 @@ export default function BoxBuilder() {
 
           <div className="row mb-3">
             <div className="col-md-6">
-              <input type="text" className="form-control" placeholder="Search products..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
+              <input type="text" className="form-control-modern" placeholder="Search products..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
             </div>
             <div className="col-md-3">
-              <select className="form-select" value={category} onChange={(e) => { setCategory(e.target.value); setPage(1); }}>
+              <select className="form-select-modern" value={category} onChange={(e) => { setCategory(e.target.value); setPage(1); }}>
                 <option value="">All Categories</option>
                 {categories.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
@@ -70,8 +70,8 @@ export default function BoxBuilder() {
 
               return (
                 <div key={product._id} className="col-md-4 mb-3">
-                  <div className={`card h-100 shadow-sm ${inBox ? 'border-success' : ''} ${outOfStock ? 'opacity-50' : ''}`}>
-                    <div className="card-body text-center bg-light" style={{ minHeight: 100, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className={`card-elevated h-100 ${outOfStock ? 'opacity-75' : ''}`}>
+                    <div className="card-body text-center" style={{ minHeight: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-tertiary)' }}>
                       <ProductImage product={product} size={100} />
                     </div>
                     <div className="card-body pt-2">
@@ -79,17 +79,17 @@ export default function BoxBuilder() {
                       <p className="text-muted small mb-1">{product.category}</p>
                       <p className="fw-bold mb-1">${product.price?.toFixed(2)}</p>
                       <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="badge bg-warning">★ {product.averageRating?.toFixed(1) ?? '0.0'}</span>
-                        <span className={`badge bg-${outOfStock ? 'danger' : 'success'}`}>
+                        <span className="badge-modern badge-warning">★ {product.averageRating?.toFixed(1) ?? '0.0'}</span>
+                        <span className={`badge-modern ${outOfStock ? 'badge-danger' : 'badge-success'}`}>
                           {outOfStock ? 'Out of Stock' : `${product.quantity} left`}
                         </span>
                       </div>
                       {inBox ? (
-                        <button className="btn btn-sm btn-success w-100" onClick={() => removeFromBox(product._id)}>
+                        <button className="btn btn-success btn-sm w-100" onClick={() => removeFromBox(product._id)}>
                           ✓ In Box — Remove
                         </button>
                       ) : (
-                        <button className="btn btn-sm btn-outline-primary w-100" onClick={() => handleAdd(product)} disabled={isFull || outOfStock}>
+                        <button className="btn btn-outline-primary-modern btn-sm w-100" onClick={() => handleAdd(product)} disabled={isFull || outOfStock}>
                           {justAdded ? '✓ Added!' : outOfStock ? 'Out of Stock' : isFull ? 'Box Full' : 'Add to Box'}
                         </button>
                       )}
@@ -102,7 +102,7 @@ export default function BoxBuilder() {
 
           {totalPages > 1 && (
             <nav className="mt-3">
-              <ul className="pagination justify-content-center">
+              <ul className="pagination pagination-modern justify-content-center">
                 {Array.from({ length: totalPages }, (_, i) => (
                   <li key={i} className={`page-item ${page === i + 1 ? 'active' : ''}`}>
                     <button className="page-link" onClick={() => setPage(i + 1)}>{i + 1}</button>
@@ -115,7 +115,7 @@ export default function BoxBuilder() {
 
         {/* Right: Your Box sidebar */}
         <div className="col-md-4">
-          <div className="card shadow-sm sticky-top" style={{ top: 20 }}>
+          <div className="card-elevated sticky-top" style={{ top: 20 }}>
             <div className="card-header bg-primary text-white">
               <h5 className="mb-0">Your Box</h5>
             </div>
@@ -132,12 +132,12 @@ export default function BoxBuilder() {
                 <p className="text-muted text-center py-3">Your box is empty. Start adding products!</p>
               ) : (
                 box.map(item => (
-                  <div key={item._id} className="d-flex justify-content-between align-items-center mb-2 p-2 bg-light rounded">
+                  <div key={item._id} className="d-flex justify-content-between align-items-center mb-2 p-2 bg-tertiary rounded">
                     <div>
                       <strong className="small">{item.name}</strong>
                       <br /><small className="text-muted">${item.price?.toFixed(2)}</small>
                     </div>
-                    <button className="btn btn-sm btn-outline-danger" onClick={() => removeFromBox(item._id)}>✕</button>
+                    <button className="btn btn-outline-danger btn-sm" onClick={() => removeFromBox(item._id)}>✕</button>
                   </div>
                 ))
               )}
@@ -148,7 +148,7 @@ export default function BoxBuilder() {
                 <strong>${box.reduce((s, i) => s + (i.price || 0), 0).toFixed(2)}</strong>
               </div>
 
-              <button className="btn btn-primary w-100" disabled={box.length === 0} onClick={() => navigate('/box-review')}>
+              <button className="btn-gradient-primary w-100" disabled={box.length === 0} onClick={() => navigate('/box-review')}>
                 Review & Submit Box
               </button>
             </div>

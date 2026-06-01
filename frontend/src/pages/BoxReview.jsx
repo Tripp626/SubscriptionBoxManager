@@ -57,21 +57,21 @@ export default function BoxReview() {
 
   return (
     <div className="container py-4">
-      <button className="btn btn-outline-secondary mb-3" onClick={() => navigate('/box-builder')}>← Back to Box Builder</button>
+      <button className="btn-outline-secondary mb-3" onClick={() => navigate('/box-builder')}>← Back to Box Builder</button>
       <h2>Review Your Box</h2>
 
       <div className="row mt-4">
         <div className="col-md-7">
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && <div className="alert-modern alert-modern-danger">{error}</div>}
           <form onSubmit={handleSubmit}>
             {/* Subscription selection */}
-            <div className="card shadow-sm mb-4">
+            <div className="card-elevated mb-4">
               <div className="card-header"><h5 className="mb-0">Subscription</h5></div>
               <div className="card-body">
                 {subscriptions.length === 0 ? (
-                  <p className="text-muted">No active subscriptions. <button type="button" className="btn btn-sm btn-primary" onClick={() => navigate('/plans')}>Subscribe to a plan</button></p>
+                  <p className="text-muted">No active subscriptions. <button type="button" className="btn-gradient-primary btn-sm" onClick={() => navigate('/plans')}>Subscribe to a plan</button></p>
                 ) : (
-                  <select className="form-select" value={selectedSub} onChange={(e) => setSelectedSub(e.target.value)}>
+                  <select className="form-select-modern" value={selectedSub} onChange={(e) => setSelectedSub(e.target.value)}>
                     {subscriptions.map(sub => (
                       <option key={sub._id} value={sub._id}>
                         {sub.plan?.name} — up to {sub.plan?.maxProducts} items
@@ -83,48 +83,48 @@ export default function BoxReview() {
             </div>
 
             {/* Shipping */}
-            <div className="card shadow-sm mb-4">
+            <div className="card-elevated mb-4">
               <div className="card-header"><h5 className="mb-0">Shipping Address</h5></div>
               <div className="card-body">
                 <div className="mb-3">
-                  <label className="form-label">Street</label>
-                  <input type="text" className="form-control" value={address.street} onChange={(e) => setAddress({ ...address, street: e.target.value })} required />
+                  <label className="form-label-modern">Street</label>
+                  <input type="text" className="form-control-modern" value={address.street} onChange={(e) => setAddress({ ...address, street: e.target.value })} required />
                 </div>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label className="form-label">City</label>
-                    <input type="text" className="form-control" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} required />
+                    <label className="form-label-modern">City</label>
+                    <input type="text" className="form-control-modern" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} required />
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label className="form-label">State</label>
-                    <input type="text" className="form-control" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} required />
+                    <label className="form-label-modern">State</label>
+                    <input type="text" className="form-control-modern" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} required />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label className="form-label">Zip Code</label>
-                    <input type="text" className="form-control" value={address.zipCode} onChange={(e) => setAddress({ ...address, zipCode: e.target.value })} required />
+                    <label className="form-label-modern">Zip Code</label>
+                    <input type="text" className="form-control-modern" value={address.zipCode} onChange={(e) => setAddress({ ...address, zipCode: e.target.value })} required />
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label className="form-label">Country</label>
-                    <input type="text" className="form-control" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} required />
+                    <label className="form-label-modern">Country</label>
+                    <input type="text" className="form-control-modern" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} required />
                   </div>
                 </div>
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary w-100 btn-lg" disabled={loading || subscriptions.length === 0}>
+            <button type="submit" className="btn-gradient-primary w-100 btn-lg" disabled={loading || subscriptions.length === 0}>
               {loading ? 'Processing...' : `Submit Box — $${box.reduce((s, i) => s + (i.price || 0), 0).toFixed(2)}`}
             </button>
           </form>
         </div>
 
         <div className="col-md-5">
-          <div className="card shadow-sm sticky-top" style={{ top: 20 }}>
+          <div className="card-elevated sticky-top" style={{ top: 20 }}>
             <div className="card-header"><h5 className="mb-0">Box Contents ({box.length}/{maxItems})</h5></div>
             <div className="card-body">
               {box.map(item => (
-                <div key={item._id} className="d-flex justify-content-between align-items-center mb-2 p-2 bg-light rounded">
+                <div key={item._id} className="d-flex justify-content-between align-items-center mb-2 p-3 bg-tertiary rounded">
                   <div>
                     <strong>{item.name}</strong>
                     <br /><small className="text-muted">{item.category}</small>

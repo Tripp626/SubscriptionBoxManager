@@ -47,32 +47,32 @@ export default function Checkout() {
             <h5>Shipping Address</h5>
             <div className="mb-3">
               <label className="form-label">Street</label>
-              <input type="text" className="form-control" value={address.street} onChange={(e) => setAddress({ ...address, street: e.target.value })} required />
+              <input type="text" className="form-control-modern" value={address.street} onChange={(e) => setAddress({ ...address, street: e.target.value })} required />
             </div>
             <div className="row">
               <div className="col-md-6 mb-3">
                 <label className="form-label">City</label>
-                <input type="text" className="form-control" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} required />
+                <input type="text" className="form-control-modern" value={address.city} onChange={(e) => setAddress({ ...address, city: e.target.value })} required />
               </div>
               <div className="col-md-6 mb-3">
                 <label className="form-label">State</label>
-                <input type="text" className="form-control" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} required />
+                <input type="text" className="form-control-modern" value={address.state} onChange={(e) => setAddress({ ...address, state: e.target.value })} required />
               </div>
             </div>
             <div className="row">
               <div className="col-md-6 mb-3">
                 <label className="form-label">Zip Code</label>
-                <input type="text" className="form-control" value={address.zipCode} onChange={(e) => setAddress({ ...address, zipCode: e.target.value })} required />
+                <input type="text" className="form-control-modern" value={address.zipCode} onChange={(e) => setAddress({ ...address, zipCode: e.target.value })} required />
               </div>
               <div className="col-md-6 mb-3">
                 <label className="form-label">Country</label>
-                <input type="text" className="form-control" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} required />
+                <input type="text" className="form-control-modern" value={address.country} onChange={(e) => setAddress({ ...address, country: e.target.value })} required />
               </div>
             </div>
             <hr />
             <h5>Payment Method</h5>
             <div className="mb-3">
-              <select className="form-select">
+              <select className="form-select-modern">
                 <option value="stripe">Credit Card (Stripe)</option>
                 <option value="paypal">PayPal</option>
               </select>
