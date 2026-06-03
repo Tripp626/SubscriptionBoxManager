@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" style={{ display: 'flex', alignItems: 'center' }}>
           <span className="brand-icon">📦</span>
-          SBMS
+          Boxly
         </Link>
         <button
           className="navbar-toggler"

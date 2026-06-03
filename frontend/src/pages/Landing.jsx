@@ -482,7 +482,7 @@ export default function Landing() {
                   justifyContent: 'center',
                   fontSize: '16px',
                 }}>📦</div>
-                <span style={{ color: 'white', fontWeight: 800, fontSize: '1.1rem' }}>SBMS</span>
+                <span style={{ color: 'white', fontWeight: 800, fontSize: '1.1rem' }}>Boxly</span>
               </div>
               <p style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '280px' }}>
                 Curated subscription boxes personalized to your tastes. Discover new products every month.
@@ -516,7 +516,7 @@ export default function Landing() {
             textAlign: 'center',
             fontSize: '13px',
           }}>
-            © 2026 Subscription Box Manager. All rights reserved.
+            © 2026 Boxly. All rights reserved.
           </div>
         </div>
       </footer>
