@@ -61,7 +61,8 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
+const MONGO_URI = "mongodb+srv://terseertt_db_user:oXJyjcdo69Zd7gPs@cluster0.vnxhq6k.mongodb.net/subscriptionbox?retryWrites=true&w=majority";
+mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
